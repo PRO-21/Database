@@ -10,6 +10,7 @@ DROP FUNCTION IF EXISTS random_string;
 -- -----------------------------------------------------
 -- Table `Pays`
 -- -----------------------------------------------------
+-- cette table ainsi que les insertions dans la table viennent de : https://dyclassroom.com/reference-database/mysql-country-name-and-country-code-list
 CREATE TABLE IF NOT EXISTS `Pays` (
   `idPays` char(3) NOT NULL,
   `nomPays` varchar(200) NOT NULL,
