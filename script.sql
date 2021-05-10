@@ -65,6 +65,7 @@ CREATE TABLE IF NOT EXISTS `Champ` (
   `idCertificatCertificat` CHAR(10) NOT NULL,
   `nom` VARCHAR(256) NOT NULL,
   `valeur` VARCHAR(500) NOT NULL,
+  `ordre` SMALLINT UNSIGNED DEFAULT NULL,
   PRIMARY KEY (`idCertificatCertificat`, `nom`),
   CONSTRAINT `FK_Certificat_Champ`
     FOREIGN KEY (`idCertificatCertificat`)
@@ -361,5 +362,21 @@ BEGIN
 	SET NEW.idCertificat = @id;
 END$$
 
+DELIMITER ;
 
+
+DROP TRIGGER IF EXISTS before_insert_Champ;
+DELIMITER $$
+CREATE TRIGGER before_insert_Champ
+BEFORE INSERT ON Champ
+FOR EACH ROW
+BEGIN
+
+	DECLARE nbChamp INT;
+	SET nbChamp = (SELECT COUNT(*) FROM Champ WHERE idCertificatCertificat = NEW.idCertificatCertificat);	
+	
+	SET NEW.ordre = nbChamp + 1;
+
+
+END$$
 DELIMITER ;
