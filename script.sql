@@ -362,11 +362,8 @@ BEGIN
 	SET NEW.idCertificat = @id;
 END$$
 
-
 DELIMITER ;
 
-
-DELIMITER ;
 
 DROP TRIGGER IF EXISTS before_insert_Champ;
 DELIMITER $$
